@@ -1,0 +1,112 @@
+\documentclass[boxes]{rutgers_hw}
+\usepackage{rutgers}
+% \usepackage[none]{hyphenat} % Use to avoid hyphens
+
+
+
+\author{Rohan Karamel}
+\netid{rak218} 
+\assignment{Workshop 2}
+\date{\today}
+\course{Honors Real Analysis}
+\semester{Spring 2024}
+\instructor{Professor Sagun Chanillo}
+\institution{Rutgers University}
+
+\newtheorem*{lemma}{Lemma}
+
+\begin{document}
+
+  \maketitle
+
+  \begin{exern}{1a}
+    Prove for any $a,b \in \mathbb{R}$
+    \[ ab \le \frac{a^2}{2} + \frac{b^2}{2}\]
+  \end{exern}
+  \begin{proof}
+    Let $x \in \mathbb{R}$. Trivially, we know $x^2 \ge 0$.
+    Set $x = a - b$ for some real numbers $a, b$. Thus, we have 
+    \[ {(a - b)}^2 \ge 0 \]
+    Expanding gives us
+    \[ a^2 - 2ab + b^2 \ge 0 \]
+    and equivalently,
+    \[ ab \le \frac{a^2}{2} + \frac{b^2}{2}\]
+  \end{proof}
+
+  \pagebreak
+
+  \begin{exern}{1b}
+    Prove for any $a_i, b_i \in \mathbb{R}$
+    \[ \left|\sum_{i=1}^{n}{a_i b_i}\right| \le {\left(\sum_{i=1}^n{a_i^2}\right)}^\frac12{\left(\sum_{i=1}^n{b_i^2}\right)}^\frac12\]
+  \end{exern}
+  \begin{proof}
+    We begin with our finding from 1a, for any real numbers c,d
+    \[ cd \le \frac{c^2}{2} + \frac{d^2}{2}\]
+    Let $c = a_i b_j$, $d = a_j b_i$ where $a_k, b_k \in \mathbb{R}$ for all $k$.
+    \[ a_i b_j a_j b_i \le \frac{{(a_i b_j)}^2}{2} + \frac{{(a_j b_i)}^2}{2}\]
+    Now, we can sum equivalently over both the left-hand side and right-hand side. 
+    This remains true because there are $n \choose 2$ terms on both sides, all which satisfy 1a's inequality.
+    \[ \sum_{i = 1}^n \sum_{j = i+1}^n a_i b_j a_j b_i \le \sum_{i = 1}^n \sum_{j = i+1}^n \frac{{(a_i b_j)}^2}{2} + \frac{{(a_j b_i)}^2}{2} \]
+    We will now multiply by two and add a different term to both sides
+    \[ \left[\sum_{i = 1}^n {(a_i b_i)}^2\right] + \left[\sum_{i = 1}^n \sum_{j = i+1}^n 2 a_i b_j a_j b_i \right] \le \left[\sum_{i = 1}^n {(a_i b_i)}^2\right] + \left[\sum_{i = 1}^n \sum_{j = i+1}^n {(a_i b_j)}^2 + {(a_j b_i)}^2 \right]\]
+    Notice that, the left-hand side is equivalent to
+    \[ \left[\sum_{i = 1}^n {(a_i b_i)}^2\right] + \left[\sum_{i = 1}^n \sum_{j = i+1}^n 2 (a_i b_i) (a_j b_j) \right] = {\left[ \sum_{i=1}^n a_i b_i\right]}^2\]
+    Likewise, the right-hand side is equivalent to
+    \[ \left[\sum_{i = 1}^n {(a_i b_i)}^2\right] + \left[\sum_{i = 1}^n \sum_{j = i+1}^n {(a_i b_j)}^2 + {(a_j b_i)}^2 \right] = \left[\sum_{i = 1}^n \sum_{j = i + 1}^n{(a_i b_j)}^2\right] = \left[\sum_{i=1}^n a_i^2\right]\left[\sum_{i=1}^n b_i^2\right]\]
+    Combining these, we can conclude that, by definition of absolute value,
+    \[ {\left[ \sum_{i=1}^n a_i b_i\right]}^2 \le \left[\sum_{i=1}^n a_i^2\right]\left[\sum_{i=1}^n b_i^2\right] \implies \left| \sum_{i=1}^n a_i b_i\right| \le {\left(\sum_{i=1}^n a_i^2\right)}^\frac12{\left(\sum_{i=1}^n b_i^2\right)}^\frac12\]
+  \end{proof}
+
+  \pagebreak
+
+  \begin{exern}{1c}
+    Prove for any $a_i \in \mathbb{R}$,
+    \[ \left| \sum_{i=1}^n a_i \right| \le \sqrt{n}{\left( \sum_{i=1}^n a_i^2\right)}^\frac12\]
+  \end{exern}
+  \begin{proof}
+    We begin with the inequality from 1b,
+    \[ \left| \sum_{i=1}^n a_i b_i\right| \le {\left(\sum_{i=1}^n a_i^2\right)}^\frac12{\left(\sum_{i=1}^n b_i^2\right)}^\frac12\]
+    Let ${\{b_i \}}_{i=1}^n$ be the constant sequence $\{1,1,1,1,\dots\}$. 
+    We can rewrite the inequality as
+    \[ \left| \sum_{i=1}^n a_i \right| \le \sqrt{n}{\left( \sum_{i=1}^n a_i^2\right)}^\frac12\]
+  \end{proof}
+
+  \pagebreak
+
+  \begin{lemma}[1]
+    \[ \frac{|x + y|}{1 + |x + y|} \le \frac{|x| + |y|}{1 + |x| + |y|}\]
+  \end{lemma}
+  \begin{proof}
+    By the triangle inequality, we know
+    \[ |x + y| \le |x| + |y|\]
+    Adding terms to both sides, we have
+    \[ |x+y| + |x||x+y| + |y||x+y| \le |x| + |y| + |x||x+y| + |y||x+y|\]
+    Factoring give us
+    \[ |x + y| (1 + |x| + |y|) \le (|x| + |y|)(1 + |x + y|)\]
+    Finally, dividing by $1 + |x| + |y|$ and $1 + |x+y|$,
+    \[ \frac{|x + y|}{1 + |x + y|} \le \frac{|x| + |y|}{1 + |x| + |y|}\]
+  \end{proof}
+
+  \begin{exern}{2}
+    Prove for any $x,y \in \mathbb{R}$, we have
+    \[ \frac{|x+y|}{1 + |x+y|} \le \frac{|x|}{1+|x|} + \frac{|y|}{1+ |y|} \]
+  \end{exern}
+  \begin{proof}
+    Take the trivial inequality: $|x| + |y| + |x||y| \le |x| + |y| + 2|x||y|$.
+    We will manipulate both sides to reach our goal. Add one to both sides and factor both sides.
+    \[ 1 + |x| + |y| + |x||y| \le 1 + |x| + |y| + 2|x||y| \]
+    \[ (1 + |x|)(1 + |y|) \le 1 + |x|(1+|y|) + |y|(1 + |x|)\]
+    We multiply by $|x| + |y|$ on both sides.
+    \[ (|x| + |y|)(1+|x|)(1+|y|) \le (|x| + |y|)(1 + |x|(1+|y|) + |y|(1 + |x|))\]
+    Now, dividing by all the non-$(|x| + |y|)$ terms, we have
+    \[ \frac{|x|}{1 + |x| + |y|} + \frac{|y|}{1 + |x| + |y|} \le \frac{|x|}{1 + |x|} + \frac{|y|}{1+|y|}\]
+    Our right-hand side matches our goal so we will leave it alone. 
+    For the left-hand side, by lemma 1, we know that 
+    \[ \frac{|x + y|}{1 + |x + y|} \le \frac{|x| + |y|}{1 + |x| + |y|}\]
+    Thus, putting it together yields
+    \[\frac{|x+y|}{1 + |x+y|} \le \frac{|x|}{1+|x|} + \frac{|y|}{1+ |y|} \]
+
+  \end{proof}
+
+
+\end{document}
