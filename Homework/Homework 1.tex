@@ -1,0 +1,99 @@
+\documentclass[boxes]{rutgers_hw}
+\usepackage{rutgers}
+% \usepackage[none]{hyphenat} % Use to avoid hyphens
+
+
+
+\author{Rohan Karamel} % Enter your name
+\netid{rak218} % Enter your NetID or comment out
+% \collaborators{Leonhard Euler, Bernard Bolzano} % Enter your collaborators or comment out
+\assignment{Homework 1} % Enter the assignment name
+\date{\today} % Replace with due date
+\course{Honors Real Analysis} % Enter the course name
+\semester{Spring 2024} % Enter the semester
+% \sectionnum{Honors} % Enter your section number
+\instructor{Professor Sagun Chanillo} % Enter your professor's name
+\institution{Rutgers University} % Enter your university
+
+\begin{document}
+
+\maketitle
+
+% --------------------------------------------------------------
+
+\begin{exern}{1.a} 
+  Given $A, B \subseteq \mathbb{R}$, prove that if $\inf(A), \inf(B)$ finite, then $\inf(A+B) = \inf(A) + \inf(B)$.
+\end{exern}
+\begin{solution}
+  Assuming the sets A and B nonempty, we know that \\ $\inf(A) + \inf(B) \le a + b \ \ \forall a \in A, b \in B $.
+  Thus, $\inf(A) + \inf(B) \le \inf(A+B)$.
+
+  \hfill \\
+  Now, for all $\epsilon > 0$, there exists an $a \in A$ and $b \in B$ such that
+  \[ a < \inf(A) + \frac{\epsilon}{2}\]
+  \[ b < \inf(B) + \frac{\epsilon}{2}\]
+  Adding these together yields
+  \[ a + b < \inf(A) + \inf(B) + \epsilon\]
+  We also know that,
+  \[ \inf(A+B) \le a + b < \inf(A) + \inf(B) + \epsilon \]
+  For all $\epsilon > 0$, we have
+  \[ \inf(A + B) - \epsilon \le \inf(A) + \inf(B) \]
+  We conclude,
+  \[ \inf(A) + \inf(B) = \inf(A + B) \]
+\end{solution}
+
+% --------------------------------------------------------------
+\pagebreak
+% --------------------------------------------------------------
+
+\begin{exern}{1.b.1} 
+  Prove that (1.a) is true if $\inf(A)$ is infinite and $\inf(B)$ is finite.
+\end{exern}
+\begin{proof} 
+  Assume for the sake of contradiction that $\inf(A+B)$ is finite. 
+  By definition, we know that $\inf(A + B) \le a + b$ for all $a \in A$ and $b \in B$. \\
+  We know that
+  \[\inf(A+B) \le a + \inf(B) \ \ \forall a \in A\]
+  \[\inf(A+B) - \inf(B) \le a \ \ \forall a \in A\]
+  Recall that $\inf(A)$ is negative infinity, so there exists an $a \in A$ such that $a < M$ for any real number, M.
+  Setting $M = \inf(A+B) - \inf(B)$, a contradiction occurs.
+  Thus, $\inf(A+B)$ is infinite.
+\end{proof}
+
+% --------------------------------------------------------------
+
+\begin{exern}{1.b.2} 
+  Prove that (1.a) is true if $\inf(A)$ and $\inf(B)$ is infinite.
+\end{exern}
+\begin{proof}
+  Assume for the sake of contradiction that $\inf(A+B)$ is finite. 
+  By definition, we know that $\inf(A+B) \le a + b$ for all $a \in A$ and $b \in B$.
+  Similarly, we have
+  \[ \inf(A+B) - b \le a \ \ \ \forall a \in A, b \in B \]
+  We know that because $\inf(A)$ is negative infinity, there exists an $a \in A$ such that $a < M$ for any real number, M.
+  We can set $M = \inf(A+B) - b$.
+  Now, we have that
+  \[ M \le a \]
+  And thus, a contradiction occurs.
+  Therefore, $\inf(A+B)$ is infinite.
+\end{proof}
+
+% --------------------------------------------------------------
+\pagebreak
+% --------------------------------------------------------------
+
+\begin{exern}{2}
+  Let $a < b$ be real numbers and consider the set $T = \mathbb{Q}\cap[a,b]$. Show $\sup(T) = b$.
+\end{exern}
+\begin{proof}
+  If $b$ is rational, then the proof is trivial. If $b$ is irrational, we proceed as follows.
+  We know $b$ is an upper bound for $T$ because
+  \[ \forall x \in \mathbb{Q}\cap[a,b], x \le b\]
+  Now, to prove that $b = \sup(T)$, we need only show that
+  \[ \forall \epsilon > 0, \exists r \in T:b - \epsilon < r\]
+  From the density of the rationals in the reals we know that there exists a rational number, $r_0$, in the interval $[a,b]$.
+  We can set $a = b - \epsilon$ for all epsilon positive to get
+  \[ b - \epsilon < r_0 < b \]
+  Thus, we have shown that $b$ is the least upper bound.
+\end{proof}
+\end{document}
