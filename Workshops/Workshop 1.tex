@@ -1,0 +1,121 @@
+\documentclass[boxes,sansserif]{rutgers_hw}
+\usepackage{rutgers}
+% \usepackage[none]{hyphenat} % Use to avoid hyphens
+
+
+
+\author{Rohan Karamel} % Enter your name
+\netid{rak218} % Enter your NetID or comment out
+% \collaborators{Leonhard Euler, Bernard Bolzano} % Enter your collaborators or comment out
+\assignment{Workshop 1} % Enter the assignment name
+\date{\today} % Replace with due date
+\course{ Real Analysis} % Enter the course name
+\semester{Spring 2024} % Enter the semester
+\sectionnum{H} % Enter your section number
+\instructor{Professor Sagun Chanillo} % Enter your professor's name
+\institution{Rutgers University} % Enter your university
+
+\begin{document}
+
+\maketitle
+
+% --------------------------------------------------------------
+
+\begin{exern}{1.a} 
+  Given $a_1, a_2, \dots, a_n > 0$ all positive numbers. \\ Prove that $a^2_1 + a^2_2 \ge 2a_1a_2$
+\end{exern}
+
+\begin{proof} 
+  We begin by subtracting $2a_1a_2$ from both sides of the inequality to get $a^2_1 + a^2_2 - 2a_1a_2 \ge 0$. 
+  We can factor this to get ${(a_1 - a_2)}^2 \ge 0$. 
+  Since $a_1$ and $a_2$ are both positive, we know that ${(a_1 - a_2)}^2$ is also positive. 
+  Thus, we have proven that $a^2_1 + a^2_2 \ge 2a_1a_2$.
+\end{proof}
+
+% --------------------------------------------------------------
+
+\begin{exern}{1.b.1} 
+    Prove that $\frac{a_1}{a_2} + \frac{a_2}{a_1} \ge 2$
+\end{exern}
+
+\begin{proof} 
+    We begin by multiplying both sides of the inequality by $a_1a_2$ to get $a^2_1 + a^2_2 \ge 2a_1a_2$. 
+    This is identical to the inequality we proved in part (a), so we know that it is true.
+\end{proof}
+
+% --------------------------------------------------------------
+
+\begin{exern}{1.b.2}
+    Prove that ${(a_1 + a_2 + a_3)}{(\frac{1}{a_1} + \frac{1}{a_2} + \frac{1}{a_3})} \ge 9$
+\end{exern}
+
+\begin{proof}
+    We begin by expanding the left hand side.
+    \[ 3 + \frac{a_1}{a_2} + \frac{a_1}{a_3} + \frac{a_2}{a_1} + \frac{a_2}{a_3} + \frac{a_3}{a_1} + \frac{a_3}{a_2} \ge 9\]
+    We can simplify and group terms to get
+    \[ {(\frac{a_1}{a_2} + \frac{a_2}{a_1})} + {(\frac{a_1}{a_3} + \frac{a_3}{a_1})} + {(\frac{a_2}{a_3} + \frac{a_3}{a_2})} \ge 6\]
+    We can use the inequality we proved in part (1.b.1) to show that each of the terms on the left hand side is greater than or equal to 2. 
+    Thus, each of the terms on the left hand side is greater than or equal to 2, and the sum of the terms is greater than or equal to 6.
+    Therefore, we have proven that ${(a_1 + a_2 + a_3)}{(\frac{1}{a_1} + \frac{1}{a_2} + \frac{1}{a_3})} \ge 9$.
+\end{proof}
+
+% --------------------------------------------------------------
+
+\begin{exern}{1.c} 
+    Prove that ${(\Sigma^n_{i=1}{a_i})}{(\Sigma^n_{j=1}{\frac{1}{a_j}})} \ge n^2$
+\end{exern}
+
+\begin{proof} 
+    We can rewrite the two sums as $\Sigma^n_{i=1}{\Sigma^n_{j=1}{\frac{a_i}{a_j}}}$. 
+    We can group two terms in the sum by rewriting it as follows:
+    \[ n + \Sigma^n_{i=1}\Sigma^n_{j=i+1}{\left(\frac{a_i}{a_j} + \frac{a_j}{a_i}\right)}\]
+    The term of $n$ appears for the excluded terms of the sum where $i = j$.
+    We can use the inequality we proved in part (1.b.1) to show that each of the terms in the sum is greater than or equal to 2.
+    Therefore,
+    \[ n + \Sigma^n_{i=1}\Sigma^n_{j=i+1}{\left(\frac{a_i}{a_j} + \frac{a_j}{a_i}\right)} \ge n + \Sigma^n_{i=1}\left(\Sigma^n_{j=i+1}{2}\right)\]
+    We can count the number of terms in the sum on the right hand side by counting the number of pairs of $i$ and $j$ such that $i < j$.
+    This is, in fact, $n \choose 2$, because, we need to choose two distinct $a_k$'s. Because each term is 2, we multiply this by 2 to get $n(n-1)$. 
+    Therefore,
+    \[ n + \Sigma^n_{i=1}\Sigma^n_{j=i+1}{\left(\frac{a_i}{a_j} + \frac{a_j}{a_i}\right)} \ge n + n(n-1) = n^2\]
+    And we are done.
+\end{proof}
+
+% --------------------------------------------------------------
+
+\begin{exern}{3.c}
+  Prove for any $k \in \mathbb{N}$, there exists $N_3$ such that $k^n \ge {n!}$.
+\end{exern}
+\begin{proof} 
+  Let $N_3 = 3k$. We proceed by induction on $n$. 
+  Let \[S = \{n \mid k^n \le n! \lor n < N_3\}\] 
+  Our goal is to prove $S = \mathbb{N}$.
+  \begin{induction}
+    \begin{basecase}
+      We first need to show $N_3 \in S$. We can rewrite the inequality as $k^{3k} \le {(3k)!}$. On the LHS, we have 3k factors of k. On the RHS, we have $3k$ factors, $2k+1$ of which is greater than or equal to k. Because there are double as many terms greater than k than less than k, we can reasonably assume that this statement is true. 
+    \end{basecase}
+    \begin{indhyp}
+      Now, we assume that $n \in S: n \ge N_3$ and will show that $n+1 \in S$.
+    \end{indhyp}
+    \begin{indstep}
+      From our assumption, we know
+      \[ k^n \le n! \]
+      Multiplying both sides by $k$ gives us
+      \[ k^{n+1} \le k(n!) \]
+      We also know that, because $n > 3k$, then
+      \[ k(n!) \le (n+1)! \]
+      Thus, we have
+      \[ k^{n+1} \le (n+1)! \]
+      Therefore, $n+1 \in S$.
+    \end{indstep}
+    Thus by the principle of mathematical induction, we have proven our theorem.
+  \end{induction}
+\end{proof}
+
+\begin{description}
+    \item Note: Because we have proven this statement for all k, Problem 3.a and 3.b are also proven.
+\end{description}
+
+
+
+
+\end{document}
