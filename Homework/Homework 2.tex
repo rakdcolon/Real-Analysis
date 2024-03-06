@@ -1,0 +1,145 @@
+\documentclass[boxes]{rutgers_hw}
+\usepackage{rutgers}
+% \usepackage[none]{hyphenat} % Use to avoid hyphens
+
+\author{Rohan Karamel}
+\netid{rak218} 
+\assignment{Homework 2}
+\date{\today}
+\course{Honors Real Analysis}
+\semester{Spring 2024}
+\instructor{Professor Sagun Chanillo}
+\institution{Rutgers University}
+
+\newtheorem*{lemma}{Lemma}
+
+\begin{document}
+
+
+  \maketitle
+
+  % Problem 1 Part A
+
+  \begin{exern}{1a}
+    
+    Let $a_n \ge 0$. Assume that
+    \[ \sum_{n=1}^\infty a_n < \infty\]
+    that is the series is \textbf{convergent}. Prove the series
+    \[ \sum_{n=1}^\infty a_n^p, 1 \le p < \infty\]
+    is also convergent.
+
+  \end{exern}
+
+  \begin{proof}
+
+    Since $\sum a_n$ is convergent, we have 
+    \[ \text{(1) \hspace{1 mm}} 0 \le a_n < 1, \forall n \ge n_0\]
+    and because the sum is less than infinity, for some natural number M
+    \[ \text{(2) \hspace{1 mm}}\sum_{n=1}^\infty a_n < M \]
+    Similarly, from (1) and because p is greater than or equal to 1,
+    \[ 0 \le a_n^p < a_n \]
+    Now by applying the infinite series to the inequality and utilizing (2)
+    \[ 0 \le \sum_{n=1}^\infty a_n^p \le \sum_{n=1}^\infty a_n \le M\]
+    And, we finally have
+    \[ 0 \le \sum_{n=1}^\infty a_n^p  \le M\]
+    Therefore, the series is convergent
+
+  \end{proof}
+
+  % Problem 1 Part B
+  
+  \begin{exern}{1b}
+    
+    Let $a_n \ge 0$. Prove if for some $p > 1$, the series $\sum_{n=1}^\infty a_n^p$ is divergent,
+    then $\sum_{n=1}^\infty a_n$ is also divergent.
+
+  \end{exern}
+
+  \begin{proof}
+
+    Assume for the sake of contradiction that the series $\sum_{n=1}^\infty a_n^p$ is divergent, 
+    but the series $\sum_{n=1}^\infty a_n$ is convergent.
+
+    We have already reached a contradiction, as in Problem 1a, we have shown that for all $p \ge 1$
+    \[\sum_{n=1}^\infty a_n \text{ convergent} \implies \sum_{n=1}^\infty a_n^p \text{ convergent}\]
+    
+    Therefore, the statement must be true.
+
+  \end{proof}
+
+  \pagebreak
+
+  % Problem 2
+
+  \begin{exern}{2}
+
+    Decide whether the following propositions are true or false, providing a short justification for each conclusion
+
+    % Problem 2 Part A
+
+    \begin{exern}{2A}
+
+        If every proper subsequence of $x_n$ converges, then $x_n$ converges as well.
+    
+    \end{exern}
+
+    \begin{proof}
+        
+        True. We know that a sequence converges if and only if all subsequences converge.
+        By using the reverse direction, we have that
+        \[ x_n \text{ convergent} \implies \text{all subsequences of } x_n \text{ is convergent}\]
+        We can limit this to just proper sequences which is a simpler statement because we exclude the case where they are equal.
+        Therefore, we have the original statement.
+
+    \end{proof}
+
+    % Problem 2 Part B
+
+    \begin{exern}{2B}
+
+        If $x_n$ contains a divergent subsequence, then $x_n$ diverges.
+    
+    \end{exern}
+
+    \begin{proof}
+        
+        True. Assume for the sake of contradiction that $x_n$ contains a divergent subsequence, but $x_n$ itself, converges.
+        Then, a contradiction forms as $x_n$ converges if and only if all subsequences of $x_n$ converge.
+        Thus, the statement is true.
+
+    \end{proof}
+
+    % Problem 2 Part C
+
+    \begin{exern}{2C}
+
+        If $x_n$ is bounded and diverges, then there exist two subsequences of $x_n$ that converge to different limits.
+    
+    \end{exern}
+
+    \begin{proof}
+        
+        True. Since the sequence is divergent, we know that $\limsup_{n\to\infty} x_n \neq \liminf_{n\to\infty} x_n$.
+        However, by definition, there exists a subsequence that converges to each of those limits.
+        Therefore, there exists two subsequences that converge to different limits.
+
+    \end{proof}
+
+    % Problem 2 Part D
+
+    \begin{exern}{2D}
+
+        If $x_n$ is monotone and contains a convergent subsequence, then $x_n$ converges.
+    
+    \end{exern}
+
+    \begin{proof}
+        
+        False. I'm not justifying this because I just checked the homework assignment, and realized I only had to solve part A.
+        But I'm still going to keep the rest of the answers here.
+
+    \end{proof}
+
+  \end{exern}
+
+\end{document}

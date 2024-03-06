@@ -1,0 +1,167 @@
+\documentclass[boxes]{rutgers_hw}
+\usepackage{rutgers}
+% \usepackage[none]{hyphenat} % Use to avoid hyphens
+
+
+
+\author{Rohan Karamel}
+\netid{rak218} 
+\assignment{Workshop 3}
+\date{\today}
+\course{Honors Real Analysis}
+\semester{Spring 2024}
+\instructor{Professor Sagun Chanillo}
+\institution{Rutgers University}
+
+\newtheorem*{lemma}{Lemma}
+
+\begin{document}
+
+  \maketitle
+
+  \pagebreak
+
+  \begin{exern}{1}
+    Let $\gamma$ be a rational number. Compute
+    \[ \lim_{n\to\infty}{\left(1 + \frac1n\right)}^\gamma\]
+  \end{exern}
+
+  \begin{proof}
+    Because the limit variable is only under the exponent, we can rewrite the limit as
+    \[{\left( \lim_{n\to\infty} \left(1 + \frac1n\right) \right)}^\gamma \]
+    We know that by the archimedean property for all epsilon positive, there exists a natural number $N$ such that
+    \[ \frac1n < \epsilon, \forall n \ge N\]
+    Adding absolute value and some terms, we get
+    \[ \left|\left(\frac1n\right) + 1 - 1 \right| < \epsilon, \forall n \ge N \]
+    \[ \left|\left(1 + \frac1n\right) - 1 \right| < \epsilon, \forall n \ge N\]
+    And we have reached the limit definition for the original sequence.
+    Therefore, the limit is 1.
+  \end{proof}
+
+  \pagebreak
+  \begin{exern}{3}
+
+    The Fibonacci numbers are given by the natural number sequence $1,2,3,5,8,\dots$.
+    The generating recursive relation for the n-th Fibonacci number $F_n$ is given by the formula
+    \[ F_n = F_{n-1} + F_{n-2}, n \ge 3\]
+    That is each natural number is obtained by summing the previous two natural numbers in the sequence.
+    Form the ratio sequence
+    \[ x_n = \frac{F_n}{F_{n-1}} \ge 1\]
+    
+    \begin{exern}{3a}
+      Prove the recursion relation for the ratio sequence is given by (where $x_1 = 2$)
+      \[ x_n = 1 + \frac1{x_{n-1}}, n \ge 2\]
+    \end{exern}
+
+    \begin{proof}
+      We begin with the definition of $x_n$. We have
+      \[ x_n = \frac{F_n}{F_{n-1}} \]
+      Using the recursive relation for the Fibonacci numbers, we can rewrite this as
+      \[ x_n = \frac{F_{n-1} + F_{n-2}}{F_{n-1}} \]
+      This simplifies to
+      \[ x_n = 1 + \frac{F_{n-2}}{F_{n-1}} \]
+      And finally, we can substitute $x_{n-1}$ for $F_{n-1}/F_{n-2}$ to get
+      \[ x_n = 1 + {(x_{n-1})}^{-1} \]
+      and we are done.
+    \end{proof}
+    
+    \pagebreak
+
+    \begin{exern}{3b}
+      Prove we have
+      \[ \frac65 \le x_n < 5, n \ge 1\]
+    \end{exern}
+
+    \begin{proof}
+      We proceed by induction. We have the base case $x_1 = 2$. We can see that
+      \[ \frac65 \le 2 < 5\]
+      Now, we assume that for some $n$, we have
+      \[ \frac65 \le x_n < 5\]
+      And use this to prove the following case. We have
+      \[ \frac65 \le x_n < 5\]
+      We know that $\frac65 \le x_n < 5$, so we can see 
+      \[ \frac56 \ge \frac1{x_n} > \frac15\]
+      Then we can add 1 to each side to get
+      \[ \frac{11}6 \ge 1 + \frac1{x_n} > \frac65\]
+      We know that $x_{n+1} = 1 + \frac1{x_n}$, so we can substitute to get
+      \[ \frac{11}6 \ge x_{n+1} > \frac65\]
+      By extension,
+      \[ 5 > x_{n+1} \ge \frac65\]
+      Therefore, by principle of mathematical induction, we have proven the inequality for all $n \ge 1$.
+    \end{proof}
+
+    \begin{exern}{3c}
+      Prove,
+      \[ |x_n - x_{n-1}| \le {\left(\frac56\right)}^2|x_{n-1} - x_{n-2}|, n \ge 4\]
+    \end{exern}
+
+    \begin{proof}
+      Using the recursive relation for $x_n$, we can rewrite the left hand side as
+      \[ \left|{1 + \frac1{x_{n-1}} - \left(1 + \frac1{x_{n-2}}\right)}\right| \]
+      This simplifies to
+      \[ \left|{\frac1{x_{n-1}} - \frac1{x_{n-2}}}\right| \]
+      We can combine the left hand side to get
+      \[ \left|\frac{x_{n-2} - x_{n-1}}{x_{n-1}x_{n-2}}\right|\]
+      Taking out the denominator, we get
+      \[ \frac1{x_{n-1}x_{n-2}} \left|x_{n-2} - x_{n-1}\right|\]
+      From where we started, we know this equals
+      \[ |x_n - x_{n-1}| = \frac1{x_{n-1}x_{n-2}} \left|x_{n-2} - x_{n-1}\right| \]
+      Maximizing the fraction using the inequality from 3b, we get this inequality
+      \[ |x_n - x_{n-1}| \le \frac1{\frac65 \cdot \frac65}|x_{n-1} - x_{n-2}|\]
+      Simplifying, we get
+      \[ |x_n - x_{n-1}| \le {\left(\frac56\right)}^2|x_{n-1} - x_{n-2}|\]
+      And we are done.
+    \end{proof}
+
+    \begin{exern}{3d}
+      Prove,
+      \[ |x_n - x_{n-1}| \le {\alpha}^{n-5}|x_{5} - x_{4}|, n \ge 7, \alpha = {\left(\frac56\right)}^2\]
+    \end{exern}
+
+    \begin{proof}
+      We proceed by induction on $n$. 
+      Let \[S = \{n \mid |x_n - x_{n-1}| \le {\alpha}^{n-5}|x_{5} - x_{4}| \lor n < 7\}\]
+      \begin{induction}
+        \begin{basecase}
+          We first need to show that when $n = 7$, the inequality holds. We have
+          \[ |x_7 - x_6| \le {\alpha}^{7-5}|x_{5} - x_{4}| \]
+          We know that $|x_7 - x_6| \le {\alpha}^{2}|x_{6} - x_{5}|$ from 3c. We can substitute to get
+          $ |x_7 - x_6| \le {\alpha}|x_{6} - x_{5}| \le {\alpha}^{2}|x_{5} - x_{4}| $
+          And we are done.
+        \end{basecase}
+        \begin{indhyp}
+          Assume that for some $n$, we have
+          $ |x_n - x_{n-1}| \le {\alpha}^{n-5}|x_{5} - x_{4}| $
+        \end{indhyp}
+        \begin{indstep}
+          We need to show that for $n+1$, the inequality holds. We have
+          \[ |x_{n+1} - x_{n}| \le {\alpha}^{n-4}|x_{5} - x_{4}| \]
+          We know that $|x_{n+1} - x_{n}| \le {\alpha}|x_{n} - x_{n-1}|$ from 3c. We can substitute to get
+          \[ |x_{n+1} - x_{n}| \le {\alpha}|x_{n} - x_{n-1}| \le {\alpha} \cdot {\alpha}^{n-5}|x_{5} - x_{4}| \]
+          Simplifying, we get
+          $ |x_{n+1} - x_{n}| \le {\alpha}^{n-4}|x_{5} - x_{4}| $
+          And we are done.
+        \end{indstep}
+        Thus by the principle of mathematical induction, we have proven our theorem. And S is the set of all natural numbers.
+      \end{induction}
+    \end{proof}
+    
+  \end{exern}
+  
+  \begin{exern}{3e}
+    Prove that the ratio sequence $x_n$ converges and compute the limit, otherwise known as the golden mean.
+  \end{exern}
+  \begin{proof}
+    We know that the ratio sequence is bounded by 5 and $\frac65$ from 3b. We also know that the sequence is monotonically increasing from 3c. Therefore, by the monotone convergence theorem, the sequence converges. We can denote the limit as $L$. We know that
+    \[ L = 1 + \frac1L \]
+    Solving for L, we get
+    \[ L^2 - L - 1 = 0 \]
+    Using the quadratic formula, we get
+    \[ L = \frac{1 \pm \sqrt{5}}{2} \]
+    We know that $L > 0$, so we can discard the negative root. Therefore, we have
+    \[ L = \frac{1 + \sqrt{5}}{2} = \phi \]
+    And we are done.
+  \end{proof}
+  
+
+\end{document}

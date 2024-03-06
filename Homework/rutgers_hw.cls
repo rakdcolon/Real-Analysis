@@ -342,7 +342,7 @@
 
 \newenvironment{solution}[1][Solution]{\begin{proof}[#1]\let\qed\relax}{\end{proof}}
 
-\renewcommand\qedsymbol{$\blacksquare$}
+\renewcommand\qedsymbol{$\square$}
 
 
 

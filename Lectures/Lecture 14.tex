@@ -1,0 +1,130 @@
+\documentclass[12pt,reqno]{amsart}
+
+\usepackage{graphicx}
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+\theoremstyle{plain}
+
+%% this allows for theorems which are not automatically numbered
+
+\newtheorem*{definition}{Definition}
+\newtheorem*{axiom}{Axiom}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{corollary}{Corollary}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{example}{Example}
+\newtheorem*{proposition}{Proposition}
+\usepackage{lineno}
+
+\title{Honors Real Analysis Lecture 1}
+\author{Rohan Karamel}
+
+\begin{document}
+
+    \begin{abstract}
+        This lecture covers a review of Chapter 1 and 2 to prepare for the upcoming first midterm.
+    \end{abstract}
+
+    \maketitle
+
+    \begin{proposition}
+        Except for finitely many, $a_n \le a + \epsilon, \forall n \ge N$.
+    \end{proposition}
+
+    \begin{proof}
+        Assume there are infinitely many $a_n$, such that $a_n > a + \epsilon$.
+        So we have $a_{n_1}, a_{n_2}, \dots, a_{n_k}, \dots$ such that (1): $a_{n_k} > a + \epsilon$
+        We proceed by cases:
+        \textbf{Case 1}: $a_{n_k} \le M$ \\
+        $a_{n_k} > a + \epsilon$ is given
+        By Bolzano-Weierstrass, there exists
+        \[ \lim_{j \to \infty} a_{n_k} = a_0\]
+        Using (1) and order theorem,
+        \[ \lim_{j \to \infty} a_{n_k} = a_0 \ge a + \epsilon\]
+        Now $a_0 \in S$
+        \[ a = \sup S \ge a_0 \ge a + \epsilon\]
+        Thus, a contradiction forms as epsilon must be positive.
+    \end{proof}
+
+    \begin{proposition}
+        \[ \limsup_{n\to\infty} (a_n + b_n) \le \limsup_{n\to\infty} a_n + \limsup_{n\to\infty} b_n \]
+        This is an equality if both sequences converge. For example:
+        \[ a_n = {(-1)}^n, b_n = {(-1)}^{n+1} \]
+        \[ a_n + b_n = 0 + 0 + \dots \]
+        \[ \limsup_{n\to\infty} (a_n + b_n) = 0 \]
+        \[ 0 \le 1 + 1 = 2\]
+    \end{proposition}
+
+    \begin{proof}
+        We proceed by cases. \\
+        \textbf{Case 1}: Assume $a = \limsup_{n\to\infty}a_n, b = \limsup_{n\to\infty}b_n$ and $a,b$ both finite. \\
+            We recall, for every $\epsilon > 0$
+            \[a_n \le a + \epsilon, \forall n \ge N_1 \]
+            \[b_n \le b + \epsilon, \forall n \ge N_2 \]
+            So for $n \ge \max{N_1, N_2} = N$
+            \[ a_n + b_n \le a + b + 2\epsilon, \forall n \ge N \]
+            So for any subsequence
+            \[ a_{n_k} + b_{n_k} \le a + b + 2\epsilon, \forall k \ge k_0 \]
+            Thus,
+            \[ \lim_{k \to \infty} (a_{n_k} + b_{n_k} \le a + b + 2\epsilon)\]
+            via order theorem, we have
+            \[\sup S \le a + b + 2\epsilon \]
+            \[\lim_{n \to \infty} (a_n + b_n) \le a + b + 2\epsilon, \forall \epsilon > 0 \]
+
+        \textbf{Case 2}: Given any $ M > 0 $,
+            \[ a_{n_k} > M, \forall k \ge k_0 \iff \limsup_{n\to\infty} a_n = +\infty\]
+            Assume $b_n \le M_1$. Then, note that
+            \[ a_{n_k} + b_{n_k} \ge M - M_1 \ge \frac M 2 \]
+            If M is very large, $M \ge 2M_1$. Thus,
+            \[ a_{n_k} + b_{n_k} > \frac M 2, \forall k \ge k_0 \]
+            And thus,
+            \[ \limsup (a_n + b_n) = \infty \]
+        
+        \textbf{Case 3}: Given any $ M > 0 $,
+            \[ a_{n_k},b_{n_k} > M, \forall k \ge k_0 \iff \limsup_{n\to\infty} a_n = +\infty, \limsup_{n\to\infty} b_n = +\infty\]
+            The proof is left as an exercise to the reader.
+
+    \end{proof}
+
+    \begin{theorem}
+        Let $S \subseteq \mathbb{N}$. Then S is countable
+    \end{theorem}
+
+    \begin{proof}
+        Use the well-ordering theorem. There exists $x_{i_1} \in S$, a least element. Note S has no repetition.
+        Now consider $S \setminus {x_{i_1}}$.
+        Then, there exists a least element, $x_{i_2} \in S \setminus {x_{i_1}}$.
+        And continue to form $\{{x_{i_1}}, {x_{i_2}}, \dots, {x_{i_k}}, \dots\}$.
+        Construct $f:\mathbb{N} \to S$. 
+        $f$ is injective as we threw repetitions out, therefore each input has a unique output.
+        $f$ is surjective as we can achieve every natural number by looking at the index  of $i$. 
+        Likewise, we can get every index of $i$ with every natural number.
+        Thus, we have a bijective function that maps the naturals to S. Therefore, S is countable.
+
+    \end{proof}
+
+    \begin{proposition}
+        This series diverges:
+        \[ \sum_{n=1}^\infty \frac 1 {\sqrt{6n^2 + 10n} + \sqrt{n^2 + 3}}\] 
+    \end{proposition}
+
+    \begin{proof}
+        \[ \frac 1 {\sqrt{6n^2 + 10n} + \sqrt{n^2 + 3}} \ge \frac 1 {\sqrt{6n^2 + 10n^2} + \sqrt{n^2 + 3n^2}} \]
+
+    \end{proof}
+
+    Tests we can use to determine convergence and divergence for series:
+    \begin{enumerate}
+        \item Comparison Test
+        \item Cauchy Condensation Theorem ($\sum r^k a_{r^k}$)
+        \item Ratio Test (Utilize comparison test with a geometric series)
+        \item Root Test (Utilize comparison test with a geometric series)
+        \item Partial Summation $\to$ Dirichlet's Test $\to$ Alternating Series Test.
+    \end{enumerate}
+
+    How to solve for $\sum \sin(kx)$: \\
+    \[ \sum_{k=0}^n e^{ikx} = \left[ \sum \cos(kx) \right] + \left[ i\sum \sin(kx) \right]\]
+    \[ \frac {1 - e^{i(n+1)x}}{1-e^{ix}} \]
+
+\end{document}
