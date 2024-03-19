@@ -1,0 +1,114 @@
+\documentclass[12pt,reqno]{amsart}
+
+\usepackage{graphicx}
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+\theoremstyle{plain}
+
+\newtheorem*{definition}{Definition}
+\newtheorem*{axiom}{Axiom}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{corollary}{Corollary}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{example}{Example}
+\newtheorem*{proposition}{Proposition}
+\usepackage{lineno}
+
+\title{Honors Real Analysis Lecture 15}
+\author{Rohan Karamel}
+
+\begin{document}
+
+    \begin{abstract}
+        This lecture covers a review of Chapter 1 and 2 to prepare for the upcoming first midterm.
+    \end{abstract}
+
+    \maketitle
+
+    Recall:
+    \begin{definition}
+        A set $K \subseteq \mathbb{R}$ is compact if and only if given any open cover
+        \[ {\{\mathbb{U}_\alpha \}}_{\alpha \in I}\text{, i.e. } K \subseteq \cup_{\alpha \in I} \mathbb{U}_\alpha\]
+        Where  $\mathbb{U}_\alpha$ is open, one can extract a finite sub-cover, i.e.
+        \[ K \subseteq \cup_{i = 1}^n \mathbb{U}_{\alpha_i}\]
+    \end{definition}
+
+    \begin{theorem}\textbf{(Heine-Borel)}
+        The following statements are equivalent:
+        \begin{enumerate}
+            \item $K$ is compact
+            \item $K$ is closed and bounded
+            \item (Sequential Compactness) Given any sequence $\{x_n\} \subseteq K$, there exists a convergent subsequence $\{x_{n_k}\}$ that converges to a finite point, $x_0$, in $K$. 
+        \end{enumerate}
+    \end{theorem}
+
+    \begin{lemma}
+        Let $F \subseteq K$, $F$ is closed, $K$ is compact. Then $F$ is compact.
+    \end{lemma}
+
+    \begin{proof}
+        Let $F \subseteq \cup_{\alpha \in I} \mathbb{U}_\alpha$ be an open cover of $F$. 
+        Now consider $\cup_{\alpha \in I} \cup F^{c}$, and note that F is closed, so $F^c$ is open. 
+        So, $K \subseteq \mathbb{R} \subseteq \cup_{\alpha \in I} \cup F^{c}$. 
+        By compactness of $K$, we can extract a finite sub-cover, i.e. $K \subseteq \cup^n_{i = 1} \mathbb{U}_{\alpha_i} \cup F^c$. 
+        Because $F \subseteq K$, we have, $F \subseteq \cup_{\alpha \in I} \mathbb{U}_\alpha$. 
+        Then $F$ is compact.
+    \end{proof}
+
+    \begin{proof}{$(2)\implies(1)$} \\
+        We show that if K is closed and bounded, then K is compact.
+        Since K is bounded, we have $K \subseteq [-M, M]$, for some $M \in \mathbb{R}$. We show that $[-M, M]$ is compact.
+        Since K is closed if we show that $[-M, M]$ is closed, the lemma yields that K is compact.
+        Let $[-M, M] \subseteq \cup_{\alpha \in I} \mathbb{U}_\alpha$
+        Assume that there is no finite sub-cover. 
+        Now we subdivide $[-M, M]$ dyadically. At the first stage, we get $[-M, 0]$ and $[0, M]$. By contradiction, we assume that for one of the sub-intervals, it is not covered by a finite sub-cover.
+        Select the sub-interval that is not covered by a finite sub-cover, and subdivide it again.
+        Therefore, we have a sequence of nested, closed intervals, $I_1 \supseteq I_2 \supseteq I_3 \supseteq \dots$.
+        Where the length of $I_n = \frac{2M}{2^n}$.
+        By the Nested Interval Property, we have that $\cap_{n = 1}^\infty I_n \neq \emptyset$.
+        Let $x_0 = \cap_{n = 1}^\infty I_n$.
+        Furthermore, $x_0 \in I_n \forall n$. Thus for $n \ge n_0$ one has 
+        \[ I_n \subseteq \left[x_0 - \frac{2M}{2^n}, x_0 + \frac{2M}{2^n}\right] \subseteq (x_0 - \delta_0, x_0 + \delta_0)\]
+        Thus for some $n \ge n_0$, $I_n \subseteq \mathbb{U}_{\alpha_0}$, for some $\alpha_0 \in I$.
+        This is a contradiction, as $I_n$ is not covered by a finite sub-cover.
+    \end{proof}
+
+    \begin{proof}{$(2) \implies (3)$} \\
+        Let $\{ x_n\} \subseteq K$. Since K is closed and bounded, by Bolzano-Weierstrass, we have that $\{x_n\}$ has a convergent subsequence, $\{x_{n_k}\}$ that converges to $x_0 \in K$.
+        Since K is closed and bounded, $x_0 \in K$ and $x_0$ finite. This is (c).
+    \end{proof}
+
+    \begin{proof}{$(3) \implies (2)$} \\
+        By contradiction, assume that K is not bounded. Then, given any $N$, one can find $x_N$ such that $x_N > N$ and $x_N \in K$.
+        The sequence $\{x_N\}$ has no convergent subsequence, as it is unbounded. This is a contradiction.
+    \end{proof}
+
+    \begin{definition}
+        A collection of sets ${\{ K_\alpha\}}_{\alpha \in I}$ are said to have the finite intersection property (FIP) if and only if 
+        \[ \cap_{i = 1}^n K_{\alpha_i} \neq \emptyset \text{ for any finite sub-collection, }\{ K_{alpha_1}, K_{alpha_2}, \dots \}\]
+    \end{definition}
+
+    \begin{lemma}
+        Let ${\{ K_\alpha\}}_{\alpha \in I}$ be a collection of compact sets having FIP, then 
+        \[ \cap_{\alpha \in I} K_\alpha \neq \emptyset\]
+    \end{lemma}
+
+    \begin{corollary}
+        Let 
+        \[ K_1 \supseteq K_2 \supseteq K_3 \supseteq \dots \]
+        be a nested sequence of compact sets. Then
+        \[ \cap_{n = 1}^\infty K_n \neq \emptyset\]
+    \end{corollary}
+
+    \begin{theorem}
+        The arbitrary intersection of compact sets is compact.
+    \end{theorem}
+
+    \begin{theorem}
+        The arbitrary union of compact sets is not compact.
+    \end{theorem}
+
+
+
+\end{document}
